@@ -1,17 +1,63 @@
+-- Test ETL and ELT loads
+-- If both tables sales_report_elt and sales_report_etl are the same
+-- the query shouldn't return any row
 
-SELECT COUNT(*) FROM sales_report;
+SELECT * 
+FROM(    
+    SELECT 
+        order_id,
+        order_date,
+        customer_id,
+        customer_name,
+        city,
+        product_id,
+        product_name,
+        category,
+        quantity,
+        price,
+        total_amount
+    FROM sales_report_elt 
+    EXCEPT
+    SELECT 
+        order_id,
+        order_date,
+        customer_id,
+        customer_name,
+        city,
+        product_id,
+        product_name,
+        category,
+        quantity,
+        price,
+        total_amount
+    FROM sales_report_etl
+    UNION ALL
+    SELECT 
+        order_id,
+        order_date,
+        customer_id,
+        customer_name,
+        city,
+        product_id,
+        product_name,
+        category,
+        quantity,
+        price,
+        total_amount
+    FROM sales_report_etl 
+    EXCEPT
+    SELECT 
+        order_id,
+        order_date,
+        customer_id,
+        customer_name,
+        city,
+        product_id,
+        product_name,
+        category,
+        quantity,
+        price,
+        total_amount
+    FROM sales_report_elt
+);
 
-SELECT * FROM sales_report LIMIT 10;
-
-SELECT category, SUM(total_amount) AS total_revenue
-FROM sales_report_etl
-GROUP BY category
-ORDER BY total_revenue DESC;
-
-SELECT city, COUNT(*) AS total_orders
-FROM sales_report
-GROUP BY city
-ORDER BY total_orders DESC;
-
-
-SELECT * FROM category_summary;
