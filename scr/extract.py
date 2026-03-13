@@ -44,13 +44,3 @@ def read_products_xml(filename: str = "products.xml"):
         })
 
     return products
-
-# test extract
-if __name__ == "__main__":
-    customers = read_customers_csv()
-    orders = read_orders_json()
-    products = read_products_xml()
-
-    print("Customers:", customers[:2])
-    print("Orders:", orders[:2])
-    print("Products:", products[:2])

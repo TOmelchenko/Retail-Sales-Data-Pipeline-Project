@@ -14,3 +14,13 @@ CREATE TABLE IF NOT EXISTS sales_report_etl (
     price NUMERIC(10,2),
     total_amount NUMERIC(10,2)
 );
+
+CREATE TABLE IF NOT EXISTS category_summary (
+    category TEXT,
+    total_revenue NUMERIC(10,2)
+);
+
+INSERT INTO category_summary (category, total_revenue)
+SELECT category, SUM(total_amount)
+FROM sales_report
+GROUP BY category;
