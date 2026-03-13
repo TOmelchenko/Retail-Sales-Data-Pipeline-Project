@@ -1,6 +1,6 @@
 from extract import read_customers_csv, read_orders_json, read_products_xml
 from transform_etl import run_etl_transform
-from load_postgres import load_sales_report
+from scr.load_postgres_etl import load_sales_report
 
 
 def main():

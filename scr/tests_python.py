@@ -1,7 +1,7 @@
 
 from extract import read_customers_csv, read_orders_json, read_products_xml 
 from transform_etl import build_sales_report, clean_customers, clean_orders, clean_products
-from load_postgres import get_connection
+from scr.load_postgres_elt import get_connection
 
 def main():
     # test extract files
