@@ -31,6 +31,26 @@ Why is this project useful as a portfolio project for future job interviews?
 
 It shows the understanding of ETL and ELT and how these both scenarios can be performed using python and PostgreSQL.
 
-# TO DO
-Add, what I've changed vs original project.
+# What I've changed vs original project.
+
+1. The virtual environment **.venv** has been created.
+2. I created a separate file **tests.py** for tests.
+3. I add **.env** and to read DB_PASSWORD.
+4. I use **settings.json** to read 
+   ```python
+   with open("config/settings.json") as f:
+    settings = json.load(f)
+   ```
+5. For **city** in customers data the empty sting has been replaced with **Unknown**
+6. In the **elt_transform.sql** the following row has been added to remove previous data from the report
+   ```sql
+   DELETE FROM sales_report_elt;
+   ```
+7. Instead of one **load_postgres.py** the separate scripts for ETL and ELT have been created
+8. Open and close database connection in **get_connection()** has been called once in **main** in **run_elt.py**. Accordingly the following functions have been updated not to call **get_connection**
+   ```python
+   load_raw_customers(customers_raw, connection)
+   load_raw_products(products_raw, connection)
+   load_raw_orders(orders_raw, connection)
+   ```
 
